@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block css %}
+
+{% endblock css %}
+{% load static %}
+{% block body %}
+
+<div class="container">
+    <h2 class="text-center mt-2 mt-md-4">Ask any <span style="color:blueviolet;">Query</span></h2>
+    <p class="text-center text-muted">Here you can ask any query from child psychologist , therapist.</p>
+    <div class="row my-3 my-md-5">
+        <div class="col-md-6 d-flex flex-column align-items-center justify-content-center">
+            <h1 class="d-none d-md-block text-center" style="font-size: 5rem;">We're here</h1>
+            <h1 class="d-md-none text-center" style="font-size: 4rem;">We're here</h1>
+            <p class="text-muted">Here you can ask anything freely.</p>
+        </div>
+        <div class="col-md-6 d-flex flex-column align-items-center justify-content-center pt-4 pt-md-0 p-md-5"
+            style="background-color: rgb(1, 230, 230);">
+            <h1 class="d-none d-md-block text-center mt-md-4" style="font-size: 5rem; color:aliceblue;">Let's talk.</h1>
+            <h1 class="d-md-none text-center" style="font-size: 4rem; color:aliceblue;">Let's talk.</h1>
+            <p class="text-muted">Share your query with us.</p>
+            <form class="p-4 rounded rounded-4" style="background-color: rgba(196, 235, 197, 0.185);">
+                <div class="mb-3">
+                    <label   for="exampleFormControlInput1" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1"
+                        placeholder="name@example.com">
+                </div>
+                <div class="mb-3">
+                    <label   for="exampleFormControlTextarea1" class="form-label">Query</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="6"></textarea>
+                </div>
+                <div class="d-flex align-items-center justify-content-center ">
+                    <button class="btn btn-success my-2 text-center">Submit</button>
+                </div>
+            </>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

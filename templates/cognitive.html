@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<div style="background-color: rgb(243, 255, 228);" class="container py-2 py-md-4 rounded rounded-5">
+<h1 class="text-center my-3 text-success">Test Started</h1>
+<div class="text-center">
+    <p class="text-muted">You have to answer just <strong>11</strong> questions, which takes only <strong>3 minute.</strong> </p>
+</div>
+
+<form method="post" class="container" action="cognitive">
+    {% csrf_token %}
+    <div class="row my-5 py-4 rounded rounded-3" style="background-color: rgb(204, 240, 204);">
+        <h2 style="color: rgb(63, 6, 63);" class=" col-md-6">1. Does your child ask the same question again and again all the time?</h2>
+        <div class="d-flex col-md-6 justify-content-evenly align-items-start pt-2">
+            <div class="form-check justify-content-center form-check-inline">
+                <input class="form-check-input bg-success" required value="Yes" type="radio"
+                    name="q1" id="inlineRadio1">
+                <label class="form-check-label" for="inlineRadio1">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input bg-danger" value="No" type="radio" name="q1"
+                    id="inlineRadio2">
+                <label class="form-check-label" for="inlineRadio2">No</label>
+            </div>
+        </div>
+    </div>
+    <div class="row my-5 py-4 rounded rounded-3" style="background-color: rgb(204, 240, 204);">
+        <h2 style="color: rgb(63, 6, 63);" class=" col-md-6">2. Does your child always think for a while little before asking questions? </h2>
+        <div class="d-flex col-md-6 justify-content-evenly align-items-start pt-2">
+            <div class="form-check justify-content-center form-check-inline">
+                <input class="form-check-input bg-success" required value="Yes" type="radio"
+                    name="q2" id="inlineRadio1">
+                <label class="form-check-label" for="inlineRadio1">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input bg-danger" value="No" type="radio" name="q2"
+                    id="inlineRadio2">
+                <label class="form-check-label" for="inlineRadio2">No</label>
+            </div>
+        </div>
+    </div>
+    <div class="row my-5 py-4 rounded rounded-3" style="background-color: rgb(204, 240, 204);">
+        <h2 style="color: rgb(63, 6, 63);" class=" col-md-6">3. Does your child verbalize more with others and ask questions reputedly?  </h2>
+        <div class="d-flex col-md-6 justify-content-evenly align-items-start pt-2">
+            <div class="form-check justify-content-center form-check-inline">
+                <input class="form-check-input bg-success" required value="Yes" type="radio"
+                    name="q3" id="inlineRadio1">
+                <label class="form-check-label" for="inlineRadio1">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input bg-danger" value="No" type="radio" name="q3"
+                    id="inlineRadio2">
+                <label class="form-check-label" for="inlineRadio2">No</label>
+            </div>
+        </div>
+    </div>
+    <div class="row my-5 py-4 rounded rounded-3" style="background-color: rgb(204, 240, 204);">
+        <h2 style="color: rgb(63, 6, 63);" class=" col-md-6">4. Do you think your child understand friendly, homely and'social relations with others? </h2>
+        <div class="d-flex col-md-6 justify-content-evenly align-items-start pt-2">
+            <div class="form-check justify-content-center form-check-inline">
+                <input class="form-check-input bg-success" required value="Yes" type="radio"
+                    name="q4" id="inlineRadio1">
+                <label class="form-check-label" for="inlineRadio1">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input bg-danger" value="No" type="radio" name="q4"
+                    id="inlineRadio2">
+                <label class="form-check-label" for="inlineRadio2">No</label>
+            </div>
+        </div>
+    </div>
+    <div class="row my-5 py-4 rounded rounded-3" style="background-color: rgb(204, 240, 204);">
+        <h2 style="color: rgb(63, 6, 63);" class=" col-md-6">5. Do you think your child is more possessive over toys, space or any other equipments otherthan social obligation? </h2>
+        <div class="d-flex col-md-6 justify-content-evenly align-items-start pt-2">
+            <div class="form-check justify-content-center form-check-inline">
+                <input class="form-check-input bg-success" required value="Yes" type="radio"
+                    name="q5" id="inlineRadio1">
+                <label class="form-check-label" for="inlineRadio1">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input bg-danger" value="No" type="radio" name="q5"
+                    id="inlineRadio2">
+                <label class="form-check-label" for="inlineRadio2">No</label>
+            </div>
+        </div>
+    </div>
+    <div class="row my-5 py-4 rounded rounded-3" style="background-color: rgb(204, 240, 204);">
+        <h2 style="color: rgb(63, 6, 63);" class=" col-md-6">6. Do you think your child is aggressive other than their same aged contemporary child? </h2>
+        <div class="d-flex col-md-6 justify-content-evenly align-items-start pt-2">
+            <div class="form-check justify-content-center form-check-inline">
+                <input class="form-check-input bg-success" required value="Yes" type="radio"
+                    name="q6" id="inlineRadio1">
+                <label class="form-check-label" for="inlineRadio1">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input bg-danger" value="No" type="radio" name="q6"
+                    id="inlineRadio2">
+                <label class="form-check-label" for="inlineRadio2">No</label>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center justify-content-md-end">
+        <button class="btn btn-success" type="submit">Next</button>
+    </div>
+</form>
+</div>
+{% endblock body %}

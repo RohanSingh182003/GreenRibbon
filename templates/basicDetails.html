@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+<div id="dynamic" class="container">
+    <h1 class="text-center mt-4" style="color:rgb(62, 11, 109);">Give your <span class="text-success">Basic Details</span></h1>
+    <p class="text-center text-muted">your personal details are secure with us.</p>
+    <div class="row">
+        <div class="col-md-6 mt-md-5">
+            <img src={% static "../static/images/5.jpeg" %} class="img-fluid rounded rounded-4 p-5">
+        </div>
+        <form action="/basicDetails" method="POST" class="col-md-6 d-flex flex-column align-items-center">
+          {% csrf_token %}
+            <h3 class="my-4 fw-normal" style="color:rgb(62, 11, 109);">Fill your details  here</h3>
+            <div class="form-floating mb-3 mb-3">
+                <input required type="text" class="form-control" id="floatingInput" name="name"placeholder="name@example.com">
+                <label for="floatingInput">Name</label>
+              </div>
+              <div class="form-floating mb-3 mb-3">
+                <input required type="email" class="form-control" id="floatingInput" name="email"placeholder="name@example.com">
+                <label for="floatingInput">Email</label>
+              </div>
+              <div class="form-floating mb-3 mb-3">
+                <input required type="text" class="form-control" id="floatingInput" name="childs-name"placeholder="name@example.com">
+                <label for="floatingInput">Childs name</label>
+              </div>
+              <div class="form-floating mb-3 mb-3">
+                <input required type="text" class="form-control" id="floatingInput" name="relationship"placeholder="name@example.com">
+                <label for="floatingInput">Relationship with child</label>
+              </div>
+              <div class="form-floating mb-3 mb-3">
+                <input required type="number" class="form-control" id="floatingInput" name="age"placeholder="name@example.com">
+                <label for="floatingInput">Childs age</label>
+              </div>
+              <button type="submit" class="btn btn-success mb-4 mb-md-2">Start Test</button>
+        </form>
+    </div>
+</div>
+{% endblock body %}

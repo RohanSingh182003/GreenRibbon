@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+
+<div class="container py-md-3 mt-md-3">
+
+    <div class="p-2 mb-2 bg-light rounded-4">
+        <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold text-success">Psychomotors</h1>
+            <p class="col-md-8 fs-4 text-muted">Feeling nervous, restless or tense, having a sense of impending danger- panic –
+                doom, having an increase heart rate, breathing rapidly, sweating, trembling, feeling weak or tired,
+                trouble concentrating or thinking about anything, having trouble sleeping, experiencing
+                gastrointestinal (GI) problems.
+            </p>
+            <button class="btn btn-outline-link btn-lg float-end nextbtn" type="button">
+                <a href="psychomotor" style="text-decoration: none;"> CLICK HERE TO MEASURE </a>
+            </button>
+        </div>
+    </div>
+
+    <div class="p-2 mb-2 bg-light rounded-4">
+        <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold text-success">Cognitive</h1>
+            <p class="col-md-8 fs-4 text-muted">Becoming easily agitated- frustrated- moody, feeling bad about yourself,
+                feeling lonely- worthless- depressed, avoiding others, low energy, headaches, chest pain and rapid
+                heartbeat, insomnia, more use of alcohol- drugs or cigarettes.
+            </p>
+            <button class="btn btn-outline-link btn-lg float-end nextbtn" type="button">
+                <a href="cognitive" style="text-decoration: none;"> CLICK HERE TO MEASURE </a>
+            </button>
+        </div>
+    </div>
+
+    <div class="p-2 mb-2 bg-light rounded-4">
+        <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold text-success">Holistic Growth</h1>
+            <p class="col-md-8 fs-4 text-muted">Worrying or feeling anxious- nervous, trouble sleeping, lack of appetite,
+                feeling overwhelmed, difficulty functioning in daily activities, suicidal thoughts or behaviour.
+            </p>
+            <button class="btn btn-outline-link btn-lg float-end nextbtn" type="button">
+                <a href="psychologyadjustment" style="text-decoration: none;"> CLICK HERE TO MEASURE </a>
+            </button>
+        </div>
+    </div>
+
+</div>
+
+<div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+    <button type="button" class="btn btn-outline-link btn-lg nextbtn fs-4"><a href="#nav-section"
+            class="nav-link rounded-3">Go to Top</a></button>
+</div>
+
+{% endblock body %}
