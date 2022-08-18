@@ -3,6 +3,10 @@ from email import message
 from django.shortcuts import render , HttpResponse , redirect
 from django.contrib import messages
 from .models import Psychomotor, Psychomotor1, Psychomotor2, UserDetail , Cognitive , Cognitive1
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate , login , logout
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 def index(request):
@@ -21,6 +25,8 @@ def reset(request):
     Psychomotor2.objects.all().delete()
     Cognitive.objects.all().delete()
     Cognitive1.objects.all().delete()
+    User.objects.all().delete()
+    logout(request)
     return redirect('/')
 
 def basicDetails(request):
@@ -33,13 +39,20 @@ def basicDetails(request):
 
         ins = UserDetail(name=name,email=email,childs_name=childs_name,relationship=relationship,childs_age=childs_age)
         ins.save()
+        user = User.objects.create_user(name)
+        password = user.set_password(name+email)
+        user.save()
+        authenticate(username=user, password=password)
+        login(request,user)
         return redirect('selectTest')
         
     return render(request,'basicDetails.html')
 
+@login_required(login_url='/')
 def selectTest(request):
     return render(request,'selectTest.html')
 
+@login_required(login_url='/')
 def psychomotor(request):
     if(request.method == 'POST'):
         q1 = request.POST['q1']
@@ -52,6 +65,7 @@ def psychomotor(request):
         return redirect('psychomotor1')
     return render(request,'psychomotor.html')
 
+@login_required(login_url='/')
 def psychomotor1(request):
     if(request.method == 'POST'):
         q6 = request.POST['q6']
@@ -68,6 +82,7 @@ def psychomotor1(request):
         return redirect('psychomotor2')
     return render(request,'psychomotor1.html')
 
+@login_required(login_url='/')
 def psychomotor2(request):
     if(request.method == 'POST'):
         q11a = request.POST['q11a']
@@ -88,6 +103,7 @@ def psychomotor2(request):
         return redirect('result')
     return render(request,'psychomotor2.html')
 
+@login_required(login_url='/')
 def result(request):
     mydata = UserDetail.objects.all().values()
     psy = Psychomotor.objects.all().values()
@@ -165,6 +181,7 @@ def result(request):
 
     return render(request,'result.html' , context)
 
+@login_required(login_url='/')
 def cognitive(request):
     if(request.method == 'POST'):
         q1 = request.POST['q1']
@@ -179,6 +196,7 @@ def cognitive(request):
         
     return render(request,'cognitive.html')
 
+@login_required(login_url='/')
 def cognitive1(request):
     if(request.method == 'POST'):
         q7 = request.POST['q7']
@@ -192,6 +210,7 @@ def cognitive1(request):
         return redirect('cognitive_result')
     return render(request,'cognitive1.html')
 
+@login_required(login_url='/')
 def cognitive_result(request):
     mydata = UserDetail.objects.all().values()
     cog = Cognitive.objects.all().values()
