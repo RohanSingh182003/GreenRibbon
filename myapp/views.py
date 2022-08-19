@@ -1,8 +1,8 @@
 from copyreg import constructor
 from email import message
-from django.shortcuts import render , HttpResponse , redirect
+from django.shortcuts import render ,  redirect
 from django.contrib import messages
-from .models import Psychomotor, Psychomotor1, Psychomotor2, UserDetail , Cognitive , Cognitive1
+from .models import Psychomotor, Psychomotor1, Psychomotor2, UserDetail , Cognitive , Cognitive1 , AffectiveDomain , AffectiveDomain1
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate , login , logout
 from django.contrib.auth.decorators import login_required
@@ -25,6 +25,8 @@ def reset(request):
     Psychomotor2.objects.all().delete()
     Cognitive.objects.all().delete()
     Cognitive1.objects.all().delete()
+    AffectiveDomain.objects.all().delete()
+    AffectiveDomain1.objects.all().delete()
     User.objects.all().delete()
     logout(request)
     return redirect('/')
@@ -255,3 +257,74 @@ def cognitive_result(request):
     }
 
     return render(request,'cognitive_result.html' , context)
+
+@login_required(login_url='/')
+def affectiveDomain(request):
+    if(request.method == 'POST'):
+        q1 = request.POST['q1']
+        q2 = request.POST['q2']
+        q3 = request.POST['q3']
+        q4 = request.POST['q4']
+        q5 = request.POST['q5']
+        ins = AffectiveDomain(q1=q1,q2=q2,q3=q3,q4=q4,q5=q5)
+        ins.save()
+        return redirect('affectiveDomain1')
+    return render(request,'AffectiveDomain.html')
+
+@login_required(login_url='/')
+def affectiveDomain1(request):
+    if(request.method == 'POST'):
+        q6 = request.POST['q6']
+        q7 = request.POST['q7']
+        q8 = request.POST['q8']
+        q9 = request.POST['q9']
+        q10 = request.POST['q10']
+        ins = AffectiveDomain1(q6=q6,q7=q7,q8=q8,q9=q9,q10=q10)
+        ins.save()
+        messages.success(request,'Thank You.')
+        return redirect('affectiveDomain_result')
+    return render(request,'AffectiveDomain1.html')
+
+@login_required(login_url='/')
+def affectiveDomain_result(request):
+    mydata = UserDetail.objects.all().values()
+    afd = AffectiveDomain.objects.all().values()
+    afd1 = AffectiveDomain1.objects.all().values()
+
+    name = mydata[len(mydata)-1].get('name')
+    email = mydata[len(mydata)-1].get('email')
+    childs_name = mydata[len(mydata)-1].get('childs_name')
+    relationship = mydata[len(mydata)-1].get('relationship')
+    childs_age = mydata[len(mydata)-1].get('childs_age')
+
+    q1 = afd[len(afd)-1].get('q1')
+    q2 = afd[len(afd)-1].get('q2')
+    q3 = afd[len(afd)-1].get('q3')
+    q4 = afd[len(afd)-1].get('q4')
+    q5 = afd[len(afd)-1].get('q5')
+
+    q6 = afd1[len(afd1)-1].get('q6')
+    q7 = afd1[len(afd1)-1].get('q7')
+    q8 = afd1[len(afd1)-1].get('q8')
+    q9 = afd1[len(afd1)-1].get('q9')
+    q10 = afd1[len(afd1)-1].get('q10')
+
+    context = {
+        'name' : name , 
+        'email' : email,
+        'childs_name': childs_name,
+        'relationship': relationship,
+        'childs_age': childs_age,
+        'q1': q1,
+        'q2': q2,
+        'q3': q3,
+        'q4': q4,
+        'q5': q5,
+        'q6': q6,
+        'q7': q7,
+        'q8': q8,
+        'q9': q9,
+        'q10': q10,
+    }
+
+    return render(request,'AffectiveDomain_result.html' , context)

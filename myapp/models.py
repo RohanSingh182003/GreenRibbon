@@ -57,3 +57,17 @@ class Cognitive1(models.Model):
     q9 = models.TextField()
     q10 = models.TextField()
     q11 = models.TextField()
+
+class AffectiveDomain(models.Model):
+    q1 = models.TextField()
+    q2 = models.TextField()
+    q3 = models.TextField()
+    q4 = models.TextField()
+    q5 = models.TextField()
+
+class AffectiveDomain1(models.Model):
+    q6 = models.TextField()
+    q7 = models.TextField()
+    q8 = models.TextField()
+    q9 = models.TextField()
+    q10 = models.TextField()
