@@ -208,7 +208,6 @@ def cognitive1(request):
         q11 = request.POST['q11']
         ins = Cognitive1(q7=q7,q8=q8,q9=q9,q10=q10,q11=q11)
         ins.save()
-        messages.success(request,'Thank You.')
         return redirect('cognitive_result')
     return render(request,'cognitive1.html')
 
@@ -237,6 +236,60 @@ def cognitive_result(request):
     q10 = cog1[len(cog1)-1].get('q10')
     q11 = cog1[len(cog1)-1].get('q11')
 
+    Yesarr = []
+    Noarr = []
+    if(q1 == 'Yes'):
+        Yesarr.append('Not justified:- derange mental coordination-requires counselling by Psychologist/Medical Attention to improve coordination and intellectuality between parents and child. ')
+    else:
+        Noarr.append('Normal intellectuality')           
+    if(q2 == 'Yes'):
+        Yesarr.append('Lack in self-confidence:- needs more attention by parents to boost his/her mental confidence/psychologist consultation')
+    else:
+        Noarr.append('Normal')    
+    if(q3 == 'Yes'):
+        Yesarr.append('Confused state of mind:- needs to be relaxed and to remain free from to be disturbed by others. ')
+    else:
+        Noarr.append('Normal.')    
+    if(q4 == 'Yes'):
+        Yesarr.append('Normal state of mind.')
+    else:
+        Noarr.append('Unsocial/lintrovert:- needsmore parentalattention/psychologist consultation')    
+    if(q5 == 'Yes'):
+        Yesarr.append('Emotional and sensitive:- needs to socialized more. More attention of parents are essential. ')
+    else:
+        Noarr.append('Normal')
+    if(q6 == 'Yes'):
+        Yesarr.append('Mentally Hyperactive:-needs psychologist intervention')
+    else:
+        Noarr.append('Normal')           
+    if(q7 == 'Yes'):
+        Yesarr.append('Normal')
+    else:
+        Noarr.append('Confused stateof mind needs corrections/counseling by Psychologist')    
+    if(q8 == 'Yes'):
+        Yesarr.append('Derangement ofMotor (Brain) activity needs more attention by parents and counselling bythe Psychologist..')
+    else:
+        Noarr.append('Normal')    
+    if(q9 == 'Yes'):
+        Yesarr.append('Abnormal state of fearness/too emotional:- needs corrections by parents/counselling by Psychologist. ')
+    else:
+        Noarr.append('Normal')    
+    if(q10 == 'Yes'):
+        Yesarr.append('Mental retardation-needs more attention by parents/medical attention is required to find out under lying causes')
+    else:
+        Noarr.append('Normal ')
+    if(q10 == 'Yes'):
+        Yesarr.append('Mental disorder- needs more attention by parents/medical attention is required to find out under lying causes.')
+    else:
+        Noarr.append('Normal ')
+    Mainarr = Yesarr + Noarr 
+    str1 = " " 
+    Mainstr = str1.join(Mainarr)
+    MainStrUpper = Mainstr.upper()
+    normal = MainStrUpper.count("NORMAL")
+    normal2 = (normal/11)*100
+    other = (100-normal2)
+    print(other,normal2)
     context = {
         'name' : name , 
         'email' : email,
@@ -254,6 +307,11 @@ def cognitive_result(request):
         'q9': q9,
         'q10': q10,
         'q11': q11,
+        'Yesarr': Noarr,
+        'Noarr': Yesarr,
+        'Yesavg': normal2,
+        'Noavg': other,
+        # 'mainConclusion': mainConclusion
     }
 
     return render(request,'cognitive_result.html' , context)
@@ -281,7 +339,6 @@ def affectiveDomain1(request):
         q10 = request.POST['q10']
         ins = AffectiveDomain1(q6=q6,q7=q7,q8=q8,q9=q9,q10=q10)
         ins.save()
-        messages.success(request,'Thank You.')
         return redirect('affectiveDomain_result')
     return render(request,'AffectiveDomain1.html')
 
@@ -330,7 +387,7 @@ def affectiveDomain_result(request):
     if(q5 == 'Yes'):
         Yesarr.append('Intelligent, innovative and thoughtful')
     else:
-        Noarr.append('on innovative')
+        Noarr.append('Non innovative')
     if(q6 == 'Yes'):
         Yesarr.append('Un-usual mind set')
     else:
@@ -350,11 +407,26 @@ def affectiveDomain_result(request):
     if(q10 == 'Yes'):
         Yesarr.append('Rational, innovative and intelligent')
     else:
-        Noarr.append('Averag')
-    print(Yesarr , Noarr)
-    Yesavg = (len(Yesarr)/10)*100
-    Noavg = (len(Noarr)/10)*100
-    print(Yesavg,Noavg)
+        Noarr.append('Average')
+    Mainarr = Yesarr + Noarr 
+    str1 = " " 
+    Mainstr = str1.join(Mainarr)
+    MainStrUpper = Mainstr.upper()
+    avg = MainStrUpper.count("AVERAGE")
+    noninv = MainStrUpper.count("NON INNOVATIVE")
+    negatives = avg+noninv
+    inv = MainStrUpper.count("INNOVATIVE")
+    intg = MainStrUpper.count("INTELLIGENT")
+    reals = MainStrUpper.count("REALISTIC")
+    positives = inv + intg + reals
+    Yesavg = positives
+    Noavg = negatives
+    positivestr = "Maybe, Your child is very respectful , thoughtful and intelligent so inspire them for a better future and help them what he/she can do."
+    negativestr = "Maybe, Your child is normal and he/she have as usual mindset , He/she needs to be more social and innovative"
+    if(positives>negatives):
+        mainConclusion = positivestr
+    elif(negatives>positives):
+        mainConclusion = negativestr
     context = {
         'name' : name , 
         'email' : email,
@@ -373,8 +445,11 @@ def affectiveDomain_result(request):
         'q10': q10,
         'Yesarr': Yesarr,
         'Noarr': Noarr,
+        'positives': positivestr,
+        'negatives': negativestr,
         'Yesavg': Yesavg,
-        'Noavg': Noavg
+        'Noavg': Noavg,
+        'mainConclusion': mainConclusion
     }
 
     return render(request,'AffectiveDomain_result.html' , context)
