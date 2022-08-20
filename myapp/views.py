@@ -309,6 +309,52 @@ def affectiveDomain_result(request):
     q9 = afd1[len(afd1)-1].get('q9')
     q10 = afd1[len(afd1)-1].get('q10')
 
+    Yesarr = []
+    Noarr = []
+    if(q1 == 'Yes'):
+        Yesarr.append('Social,respectful, high intellectual')
+    else:
+        Noarr.append('Arrogant')           
+    if(q2 == 'Yes'):
+        Yesarr.append('More social, thinks about hygiene,innovative')
+    else:
+        Noarr.append('Non innovative')    
+    if(q3 == 'Yes'):
+        Yesarr.append('Innovative, thoughtful, intelligent')
+    else:
+        Noarr.append('As usual')    
+    if(q4 == 'Yes'):
+        Yesarr.append('Thoughtful, intelligent and innovative')
+    else:
+        Noarr.append('Average')    
+    if(q5 == 'Yes'):
+        Yesarr.append('Intelligent, innovative and thoughtful')
+    else:
+        Noarr.append('on innovative')
+    if(q6 == 'Yes'):
+        Yesarr.append('Un-usual mind set')
+    else:
+        Noarr.append('Innovative, rational, high intelligent,fight for justice')           
+    if(q7 == 'Yes'):
+        Yesarr.append('Realistic and innovative')
+    else:
+        Noarr.append('Average')    
+    if(q8 == 'Yes'):
+        Yesarr.append('Intelligent, more social')
+    else:
+        Noarr.append('Average')    
+    if(q9 == 'Yes'):
+        Yesarr.append('Realistic, thoughtful, more innovative')
+    else:
+        Noarr.append('Non innovative')    
+    if(q10 == 'Yes'):
+        Yesarr.append('Rational, innovative and intelligent')
+    else:
+        Noarr.append('Averag')
+    print(Yesarr , Noarr)
+    Yesavg = (len(Yesarr)/10)*100
+    Noavg = (len(Noarr)/10)*100
+    print(Yesavg,Noavg)
     context = {
         'name' : name , 
         'email' : email,
@@ -325,6 +371,10 @@ def affectiveDomain_result(request):
         'q8': q8,
         'q9': q9,
         'q10': q10,
+        'Yesarr': Yesarr,
+        'Noarr': Noarr,
+        'Yesavg': Yesavg,
+        'Noavg': Noavg
     }
 
     return render(request,'AffectiveDomain_result.html' , context)
